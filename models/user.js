@@ -28,6 +28,9 @@ module.exports = function(sequelize, DataTypes) {
     instanceMethods: {
       isValidPassword: function(password) {
         return bcrypt.compareSync(password, this.password);
+      },
+      userVerified: function() {
+        return this.updateAttributes({emailKey: null}); //return this.updateAttributes({completedAt: sequelize.fn('NOW')});
       }
     },
     classMethods: {
@@ -42,6 +45,7 @@ module.exports = function(sequelize, DataTypes) {
       afterCreate: [
         function(user) {
           console.log("USER '" + user.username + "' WAS CREATED! WOO!!");
+        //send an e-mail to the user to verify them...
         }
       ]
     }

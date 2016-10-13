@@ -16,15 +16,28 @@ angular.module('fswd.todo', [])
     };
 
     this.removeTodo = function(item) {
-      todoList = _.without(todoList, item);
+      $http.post('/completedTasks', item) //this should probably be done with JSON somehow instead of the HTML post I'm using here
+        .then(function(response){
+          todoList = response.data;
+        })
+        .catch(function(error) {
+          console.log("Error: " + error);
+        });
     };
 
     this.addTodo = function(toAdd) {
-      $http.post('/tasks', { name: toAdd })
-        .then(function(response) {
-          todoList = response.data;
-        });
+     $http.post('/tasks', { todo: toAdd })
+       .then(function(response) {
+         todoList = response.data;
+       })
+       .catch(function(error) {
+         console.log("Error: " + error);
+       });
+
+    this.deleteTodo = function(item) {
+      // DELETE THE ITEM FROM DATABASE!
     };
+   };
 
   })
   .controller('TodoListController', function(TodoListService, $scope) {
@@ -37,6 +50,10 @@ angular.module('fswd.todo', [])
 
     vm.addTodo = function(toAdd) {
       TodoListService.addTodo(toAdd);
+    };
+
+    vm.deleteTodo = function(item) {
+      TodoListService.deleteTodo(item);
     };
 
     $scope.$watch(function() {
