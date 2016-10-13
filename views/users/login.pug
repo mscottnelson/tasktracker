@@ -1,0 +1,22 @@
+extends ../layout.pug
+block header
+  h1= title
+
+block body
+
+  div.form-group
+    form.form-inline(method="POST" action="/users/login")
+      fieldset
+        p
+          label(for='username') Username:
+            input.form-control(type="text" name="user_id")
+        p
+          label(for='password') Password:
+            input.form-control(type="password" name="password")
+
+        button#add.btn.btn-default(type="submit" name="useraction" value="login") Login
+
+  div.helper-info
+    p(name="non-user-feedback")
+      | Did you need to register first? 
+      a(href="/users/register") Register here.

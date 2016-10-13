@@ -1,0 +1,11 @@
+extends ../layout.pug
+block header
+  h1= title
+
+block body
+
+  p Hello #{username}!
+  p Would you like to
+    strong
+      a(href='/')  create a task
+    |  or do some other action?

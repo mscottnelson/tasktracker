@@ -30,7 +30,7 @@ module.exports = function(sequelize, DataTypes) {
         return bcrypt.compareSync(password, this.password);
       },
       userVerified: function() {
-        return this.updateAttributes({emailKey: null}); //return this.updateAttributes({completedAt: sequelize.fn('NOW')});
+        return this.updateAttributes({emailKey: null}); //hey Gabe, I call on this function after a user's e-mail address has been validated to erase the emailKey...a null emailKey then means that the user is 'valid'
       }
     },
     classMethods: {

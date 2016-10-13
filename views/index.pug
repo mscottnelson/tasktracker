@@ -1,6 +1,11 @@
 extends ./layout.pug
 block header
-  h1 Angular Playground
+  h1 Task Tracker
+  if !user
+    p Consider logging in or registering.
+    a(href="/users/login") Login.
+    br
+    a(href="/users/register") Register.
 block body
   div(ng-controller="TodoListController as vm")
     label Filter Tasks:
