@@ -2,7 +2,8 @@ extends ./layout.pug
 block header
   h1 Task Tracker
   if !user
-    p Consider logging in or registering.
+    p You are not signed in.
+    p This is the GLOBAL TASK LIST. It is shared between all anonymous users.
     a(href="/users/login") Login.
     br
     a(href="/users/register") Register.
@@ -19,7 +20,7 @@ block body
     button(ng-click="vm.addTodo(toAdd); toAdd = ''") Add it!
   hr
   div(ng-controller="TodoListController as vm2")
-    p Completed Tasks:
+    p Completed Tasks (select to remove):
     label Filter Complete Tasks:
     input(type="text" ng-model="FilterComplete")
     ul

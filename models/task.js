@@ -15,6 +15,9 @@ module.exports = function(sequelize, DataTypes) {
       },
       markCompleted: function() {
         return this.updateAttributes({completedAt: sequelize.fn('NOW')});
+      },
+      markForRemoval: function() {
+        return this.destroy();
       }
     },
     scopes: {

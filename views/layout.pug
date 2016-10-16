@@ -5,7 +5,7 @@ html
     script(src="/config.js")
     script
       | System.import('app').catch(console.error.bind(console));
-    title Hello world!
+    title Task Tracker
   body(style="display: none")
     div.container
       .page-header
@@ -19,4 +19,5 @@ html
           .row
             .col-md-12
               .pull-right
-                small Hello #{user.username}!
+                small You are signed in as #{user.username}!
+                a(href="/users/logout")  Logout.
